@@ -182,3 +182,7 @@ Whether the placeholder image is displayed in case no image could be scraped.
 ___
 
 Props marked with **?** are **optional**.
+
+### FORK ###
+
+Forked for ONG Social using background colors for hover
