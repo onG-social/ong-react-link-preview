@@ -211,7 +211,7 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
         )}
         <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
           {siteName && <span>{siteName} • </span>}
-          <span className='Secondary SiteLinkAddress'
+          <span className='Secondary SiteLinkURI'
             onMouseOver={handleHover}
             onMouseOut={handleLeaveHover}>{hostname}</span>
         </div>
