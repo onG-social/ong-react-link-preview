@@ -163,6 +163,15 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
     window.open(url, browserTarget);
   };
 
+
+  function handleHover(e) {
+    e.target.style.background = backgroundHoverColor;
+  }
+  
+  function handleLeaveHover(e) {
+    e.target.style.background = backgroundColor;
+  }
+
   return (
     <div
       data-testid='container'
@@ -203,8 +212,8 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
         <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
           {siteName && <span>{siteName} • </span>}
           <span className='Secondary SiteLinkAddress'
-            onmouseover={`this.style.backgroundColor=${backgroundHoverColor}`}
-            onmouseout={`this.style.backgroundColor=${backgroundColor}`}>{hostname}</span>
+            onMouseOver={handleHover}
+            onMouseOut={handleLeaveHover}>{hostname}</span>
         </div>
       </div>
     </div>
