@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/onG-social/ong-react-link-preview/compare/v2.0.1...v2.1.0) (2022-06-29)
+
+
+### Features
+
+* **pencil:** updated colors to include hover ([ad95c75](https://github.com/onG-social/ong-react-link-preview/commit/ad95c756b3eb26e35a9767f41128b70e21ac53ed))
+
 ### [1.14.1](https://github.com/dhaiwat10/react-link-preview/compare/v1.14.0...v1.14.1) (2022-06-27)
 
 
