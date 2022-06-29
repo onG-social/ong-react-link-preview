@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "1.13.1",
   "private": false,
-  "description": "React library to preview links.",
+  "description": "React library to preview links - including hover color.",
   "author": "Dhaiwat Pandya",
   "keywords": [
     "react",
