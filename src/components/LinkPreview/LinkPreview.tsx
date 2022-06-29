@@ -83,7 +83,7 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
   fallbackImageSrc = placeholderImg,
   explicitImageSrc = null,
   showPlaceholderIfNoImage = true,
-  onSuccess = (metadata) => {},
+  onSuccess = (metadata) => { },
 }) => {
   const _isMounted = useRef(true);
   const [metadata, setMetadata] = useState<APIResponse | null>();
@@ -164,50 +164,49 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
   };
 
   return (
-      <div
-        data-testid='container'
-        onClick={onClick}
-        className={`Container ${className}`}
-        style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
-      >
-        {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
-          <div
-            data-testid='image-container'
-            style={{
-              borderTopLeftRadius: borderRadius,
-              borderTopRightRadius: borderRadius,
-              backgroundImage: `url(${
-                explicitImageSrc || image || fallbackImageSrc
+    <div
+      data-testid='container'
+      onClick={onClick}
+      className={`Container ${className}`}
+      style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
+    >
+      {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
+        <div
+          data-testid='image-container'
+          style={{
+            borderTopLeftRadius: borderRadius,
+            borderTopRightRadius: borderRadius,
+            backgroundImage: `url(${explicitImageSrc || image || fallbackImageSrc
               }), url(${fallbackImageSrc})`,
-              height: imageHeight,
-            }}
-            className='Image'
-          ></div>
+            height: imageHeight,
+          }}
+          className='Image'
+        ></div>
+      )}
+      <div className='LowerContainer'>
+        <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
+          {title}
+        </h3>
+        {description && (
+          <span
+            data-testid='desc'
+            className='Description Secondary'
+            style={{ color: secondaryTextColor }}
+          >
+            {descriptionLength
+              ? description.length > descriptionLength
+                ? `${description.slice(0, descriptionLength)}...`
+                : description
+              : description}
+          </span>
         )}
-        <div className='LowerContainer'>
-          <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
-            {title}
-          </h3>
-          {description && (
-            <span
-              data-testid='desc'
-              className='Description Secondary'
-              style={{ color: secondaryTextColor }}
-            >
-              {descriptionLength
-                ? description.length > descriptionLength
-                  ? `${description.slice(0, descriptionLength)}...`
-                  : description
-                : description}
-            </span>
-          )}
-          <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
-            {siteName && <span>{siteName} • </span>}
-            <span className='Secondary SiteLinkAddress'
-              onmouseover="this.style.backgroundColor={{backgroundHoverColor}};" 
-              onmouseout="this.style.backgroundColor={{backgroundColor}};">{hostname}</span>
-          </div>
+        <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
+          {siteName && <span>{siteName} • </span>}
+          <span className='Secondary SiteLinkAddress'
+            onmouseover={`this.style.backgroundColor=${backgroundHoverColor}`}
+            onmouseout={`this.style.backgroundColor=${backgroundColor}`}>{hostname}</span>
         </div>
       </div>
+    </div>
   );
 };
