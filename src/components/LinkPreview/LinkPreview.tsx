@@ -38,6 +38,7 @@ export interface LinkPreviewProps {
   fallback?: JSX.Element[] | JSX.Element | null;
   backgroundColor?: string;
   primaryTextColor?: string;
+  backgroundHoverColor?: string;
   secondaryTextColor?: string;
   borderColor?: string;
   showLoader?: boolean;
@@ -71,6 +72,7 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
   margin,
   fallback = null,
   backgroundColor = 'white',
+  backgroundHoverColor = 'white',
   primaryTextColor = 'black',
   secondaryTextColor = 'rgb(100, 100, 100)',
   borderColor = '#ccc',
@@ -93,7 +95,7 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
 
     if (fetcher) {
       fetcher(url)
-        .then((res) => {
+        .then((res: APIResponse | null) => {
           if (_isMounted.current) {
             let metadata;
             if (isValidResponse(res)) {
@@ -162,48 +164,50 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
   };
 
   return (
-    <div
-      data-testid='container'
-      onClick={onClick}
-      className={`Container ${className}`}
-      style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
-    >
-      {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
-        <div
-          data-testid='image-container'
-          style={{
-            borderTopLeftRadius: borderRadius,
-            borderTopRightRadius: borderRadius,
-            backgroundImage: `url(${
-              explicitImageSrc || image || fallbackImageSrc
-            }), url(${fallbackImageSrc})`,
-            height: imageHeight,
-          }}
-          className='Image'
-        ></div>
-      )}
-      <div className='LowerContainer'>
-        <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
-          {title}
-        </h3>
-        {description && (
-          <span
-            data-testid='desc'
-            className='Description Secondary'
-            style={{ color: secondaryTextColor }}
-          >
-            {descriptionLength
-              ? description.length > descriptionLength
-                ? description.slice(0, descriptionLength) + '...'
-                : description
-              : description}
-          </span>
+      <div
+        data-testid='container'
+        onClick={onClick}
+        className={`Container ${className}`}
+        style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
+      >
+        {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
+          <div
+            data-testid='image-container'
+            style={{
+              borderTopLeftRadius: borderRadius,
+              borderTopRightRadius: borderRadius,
+              backgroundImage: `url(${
+                explicitImageSrc || image || fallbackImageSrc
+              }), url(${fallbackImageSrc})`,
+              height: imageHeight,
+            }}
+            className='Image'
+          ></div>
         )}
-        <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
-          {siteName && <span>{siteName} • </span>}
-          <span>{hostname}</span>
+        <div className='LowerContainer'>
+          <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
+            {title}
+          </h3>
+          {description && (
+            <span
+              data-testid='desc'
+              className='Description Secondary'
+              style={{ color: secondaryTextColor }}
+            >
+              {descriptionLength
+                ? description.length > descriptionLength
+                  ? `${description.slice(0, descriptionLength)}...`
+                  : description
+                : description}
+            </span>
+          )}
+          <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
+            {siteName && <span>{siteName} • </span>}
+            <span className='Secondary SiteLinkAddress'
+              onmouseover="this.style.backgroundColor={{backgroundHoverColor}};" 
+              onmouseout="this.style.backgroundColor={{backgroundColor}};">{hostname}</span>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
