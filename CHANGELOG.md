@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.1.1](https://github.com/onG-social/ong-react-link-preview/compare/v2.1.0...v2.1.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* updated readme.md to include more detail on hover usage ([e49acfd](https://github.com/onG-social/ong-react-link-preview/commit/e49acfd4f82c9b597443d27a59964dcfa848ab4d))
+
 ## [2.1.0](https://github.com/onG-social/ong-react-link-preview/compare/v2.0.1...v2.1.0) (2022-06-29)
 
 
