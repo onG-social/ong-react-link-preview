@@ -173,49 +173,49 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({
   }
 
   return (
-    <div
-      data-testid='container'
-      onClick={onClick}
-      className={`Container ${className}`}
-      style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
-    >
-      {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
-        <div
-          data-testid='image-container'
-          style={{
-            borderTopLeftRadius: borderRadius,
-            borderTopRightRadius: borderRadius,
-            backgroundImage: `url(${explicitImageSrc || image || fallbackImageSrc
-              }), url(${fallbackImageSrc})`,
-            height: imageHeight,
-          }}
-          className='Image'
-        ></div>
-      )}
-      <div className='LowerContainer'>
-        <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
-          {title}
-        </h3>
-        {description && (
-          <span
-            data-testid='desc'
-            className='Description Secondary'
-            style={{ color: secondaryTextColor }}
-          >
-            {descriptionLength
-              ? description.length > descriptionLength
-                ? `${description.slice(0, descriptionLength)}...`
-                : description
-              : description}
-          </span>
+      <div
+        data-testid='container'
+        onClick={onClick}
+        className={`Container ${className}`}
+        style={{ width, height, borderRadius, textAlign, margin, backgroundColor, borderColor }}
+      >
+        {(image || fallbackImageSrc) && showPlaceholderIfNoImage && (
+          <div
+            data-testid='image-container'
+            style={{
+              borderTopLeftRadius: borderRadius,
+              borderTopRightRadius: borderRadius,
+              backgroundImage: `url(${explicitImageSrc || image || fallbackImageSrc
+                }), url(${fallbackImageSrc})`,
+              height: imageHeight,
+            }}
+            className='Image'
+          ></div>
         )}
-        <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
-          {siteName && <span>{siteName} • </span>}
-          <span className='Secondary SiteLinkURI'
-            onMouseOver={handleHover}
-            onMouseOut={handleLeaveHover}>{hostname}</span>
+        <div className='LowerContainer'>
+          <h3 data-testid='title' className='Title' style={{ color: primaryTextColor }}>
+            {title}
+          </h3>
+          {description && (
+            <span
+              data-testid='desc'
+              className='Description Secondary'
+              style={{ color: secondaryTextColor }}
+            >
+              {descriptionLength
+                ? description.length <= descriptionLength
+                  ? description
+                  : `${description.slice(0, descriptionLength)}...`
+                : description}
+            </span>
+          )}
+          <div className='Secondary SiteDetails' style={{ color: secondaryTextColor }}>
+            {siteName && <span>{siteName} • </span>}
+            <span className='Secondary SiteLink'
+              onMouseOver={handleHover}
+              onMouseOut={handleLeaveHover}>{hostname}</span>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
