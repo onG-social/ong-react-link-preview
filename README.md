@@ -1,6 +1,6 @@
 # React Link Preview
 
-A React component that renders beautiful, fully-customizable link previews.
+A React component that renders beautiful, fully-customizable link previews. As forked from @dhaiwat10/react-link-preview.
 
 ![Demo](demo.gif)
 <a href="https://twitter.com/intent/follow?screen_name=dhaiwat10">
@@ -16,14 +16,14 @@ A React component that renders beautiful, fully-customizable link previews.
 
 **Install the package:**
 
-`yarn add @dhaiwat10/react-link-preview`
+`yarn add ong-react-link-preview`
 
-`npm install @dhaiwat10/react-link-preview`
+`npm install ong-react-link-preview`
 
 **Import and render the preview:**
 
 ```js
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
+import { LinkPreview } from 'ong-react-link-preview';
 
 const Home = () => {
   return <LinkPreview url='https://www.youtube.com/watch?v=dQw4w9WgXcQ' width='400px' />;
@@ -100,6 +100,12 @@ Custom loader that will be displayed in place of the default loader.
 ### `backgroundColor?` (string)
 
 Background color of the card.
+
+<hr />
+
+### `backgroundHoverColor?` (string)
+
+What hover color to use for the site details container (useful for dark mode support)
 
 <hr />
 
